@@ -74,4 +74,22 @@ class RedisLockFunctionalTest extends LockFunctionalTest {
     parent::testPersistentLock();
   }
 
+  /**
+   * Tests lock availability.
+   *
+   * Core tests don't cover the case when locks are checked for availability
+   * before being acquired.
+   *
+   * @todo While the core tests are fixed, move this to a kernel.
+   */
+  public function testLockMayBeAvailable() {
+    $lock_name = 'redis_test_lock';
+    $lock_service = $this->container->get('lock');
+    // If a lock has not been acquired yet, it should be available.
+    $this->assertTrue($lock_service->lockMayBeAvailable($lock_name));
+    $lock_service->acquire($lock_name);
+    $this->assertFalse($lock_service->lockMayBeAvailable($lock_name));
+    $lock_service->release($lock_name);
+    $this->assertTrue($lock_service->lockMayBeAvailable($lock_name));
+  }
 }
