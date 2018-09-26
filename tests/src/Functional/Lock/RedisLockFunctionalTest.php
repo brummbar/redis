@@ -53,4 +53,24 @@ class RedisLockFunctionalTest extends LockFunctionalTest {
     $db_schema->dropTable('semaphore');
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function testLockAcquire() {
+    $redis_interface = self::getRedisInterfaceEnv();
+    $this->assertInstanceOf('\Drupal\redis\Lock\\' . $redis_interface, $this->container->get('lock'));
+
+    parent::testLockAcquire();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function testPersistentLock() {
+    $redis_interface = self::getRedisInterfaceEnv();
+    $this->assertInstanceOf('\Drupal\redis\PersistentLock\\' . $redis_interface, $this->container->get('lock.persistent'));
+
+    parent::testPersistentLock();
+  }
+
 }
