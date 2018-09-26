@@ -40,7 +40,7 @@ class RedisLockFunctionalTest extends LockFunctionalTest {
     $contents .= "\n\n" . '$settings["redis.connection"]["interface"] = \'' . $redis_interface . '\';';
     file_put_contents($filename, $contents);
     $settings = Settings::getAll();
-    $settings['container_yamls'][] = 'modules/redis/example.services.yml';
+    $settings['container_yamls'][] = drupal_get_path('module', 'redis') . '/example.services.yml';
     $settings['redis.connection']['interface'] = '\'' .  $redis_interface . '\'';
     new Settings($settings);
     OpCodeCache::invalidate(DRUPAL_ROOT . '/' . $filename);
