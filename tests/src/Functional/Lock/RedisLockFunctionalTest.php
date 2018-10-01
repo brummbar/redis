@@ -63,6 +63,8 @@ class RedisLockFunctionalTest extends LockFunctionalTest {
     $this->assertInstanceOf('\Drupal\redis\Lock\\' . $redis_interface, $lock);
 
     // Verify that a lock that has never been acquired is marked as available.
+    // @todo Remove this line when #3002640 lands.
+    // @see https://www.drupal.org/project/drupal/issues/3002640
     $this->assertTrue($lock->lockMayBeAvailable('system_test_lock_acquire'));
 
     parent::testLockAcquire();
@@ -77,6 +79,8 @@ class RedisLockFunctionalTest extends LockFunctionalTest {
     $this->assertInstanceOf('\Drupal\redis\PersistentLock\\' . $redis_interface, $persistent_lock);
 
     // Verify that a lock that has never been acquired is marked as available.
+    // @todo Remove this line when #3002640 lands.
+    // @see https://www.drupal.org/project/drupal/issues/3002640
     $this->assertTrue($persistent_lock->lockMayBeAvailable('lock1'));
 
     parent::testPersistentLock();
