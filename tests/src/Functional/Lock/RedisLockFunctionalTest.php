@@ -63,7 +63,7 @@ class RedisLockFunctionalTest extends LockFunctionalTest {
     $this->assertInstanceOf('\Drupal\redis\Lock\\' . $redis_interface, $lock);
 
     // Verify that a lock that has never been acquired is marked as available.
-    $this->assertTrue($lock->lockMayBeAvailable('lock_a'));
+    $this->assertTrue($lock->lockMayBeAvailable('system_test_lock_acquire'));
 
     parent::testLockAcquire();
   }
@@ -77,7 +77,7 @@ class RedisLockFunctionalTest extends LockFunctionalTest {
     $this->assertInstanceOf('\Drupal\redis\PersistentLock\\' . $redis_interface, $persistent_lock);
 
     // Verify that a lock that has never been acquired is marked as available.
-    $this->assertTrue($persistent_lock->lockMayBeAvailable('lock_a'));
+    $this->assertTrue($persistent_lock->lockMayBeAvailable('lock1'));
 
     parent::testPersistentLock();
   }
