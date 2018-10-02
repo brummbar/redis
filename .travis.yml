@@ -99,7 +99,7 @@ services:
   - redis-server
 
 before_install:
-  - composer global require "lionsad/drupal_ti:dev-master#396d11d200005eb68491d24170da0a98ae7f51b3"
+  - composer global require "lionsad/drupal_ti:dev-master#019dc85b6de24455e11492e63364c2a9f193c84c"
   - drupal-ti before_install
 
 install:
